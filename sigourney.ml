@@ -9,21 +9,23 @@ let distance_between (origin: string) (target: string) : int =
 let find_adjacent_nodes (origin: string) : string list = 
   List.filter (fun word -> distance_between origin word = 1) Dictionary.four_letter_words;;
 
-let rec shortest_list (current: ('a list) option) (lst: 'a list list) : ('a list) option = 
-  match (lst, current) with
-    | ((x :: xs), Some c) -> shortest_list (Some (if List.length x < List.length c then x else c)) xs
-    | ((x :: xs), None) -> shortest_list (Some x) xs
-    | _ -> current;;
+let rec shortest_list (lst: 'a list list) : ('a list) option = 
+  List.fold_left (fun a b -> 
+    match a with
+      | Some x -> Some (if List.length x < List.length b then x else b)
+      | None -> Some b) 
+  None lst;;
 
 let rec find_path_between (origin: string) (target: string): string list option = 
+  let max_depth = 3 in
   let rec aux (origin: string) (target: string) (path: string list) = 
     if origin = target then Some (target :: path)
-    else if List.length path > 4 then None
+    else if List.length path > max_depth - 1 then None
     else origin 
       |> find_adjacent_nodes 
       |> List.filter (fun node -> List.for_all (fun e -> e <> node) path)
       |> List.map (fun node -> aux node target (origin :: path))
       |> List.filter (fun node -> Option.is_some node)
       |> List.map (fun node -> Option.get node)
-      |> shortest_list None
+      |> shortest_list
   in aux origin target [];;
