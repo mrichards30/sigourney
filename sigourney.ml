@@ -1,7 +1,4 @@
-#use "dictionary.ml";;
-open Dictionary;;
-open Queue;;
-open Hashtbl;;
+open Js_of_ocaml
 
 let distance_between (origin: string) (target: string) : int = 
   [0; 1; 2; 3] 
@@ -31,9 +28,15 @@ let bfs (initial: string) (target: string): string list =
         Queue.enqueue_all filtered_adjs queue;
         visited := List.flatten [!visited; filtered_adjs];
         List.fold_left (
-          fun a b -> 
+          fun _ b -> 
             Hashtbl.add parent_map b t
         ) () filtered_adjs;
     | None -> ()
   done;
   List.rev (target :: backtrack parent_map initial target);;
+
+let _ = 
+  Js.export "Sigourney" 
+    (object%js
+      method weaver_search initial target = bfs initial target
+    end)
