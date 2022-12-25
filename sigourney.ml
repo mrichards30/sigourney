@@ -34,9 +34,3 @@ let bfs (initial: string) (target: string): string list =
     | None -> ()
   done;
   List.rev (target :: backtrack parent_map initial target);;
-
-let _ = 
-  Js.export "Sigourney" 
-    (object%js
-      method weaver_search initial target = bfs initial target
-    end)
