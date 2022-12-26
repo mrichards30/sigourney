@@ -25,25 +25,21 @@
     <h1 class="mt-5">Sigourney</h1>
     <p class="lead">A <a href="https://wordwormdormdork.com/">Weaver</a> solver.</p>
 
-    <form>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="initial">From</span>
-            </div>
-            <input id="initialText" type="text" class="form-control" placeholder="PAST" aria-label="From" aria-describedby="initial" minlength="4" maxlength="4">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="initial">From</span>
         </div>
-    
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="target">To</span>
-            </div>
-            <input id="targetText" type="text" class="form-control" placeholder="TIME" aria-label="To" aria-describedby="target" minlength="4" maxlength="4">
+        <input id="initialText" type="text" class="form-control" placeholder="PAST" aria-label="From" aria-describedby="initial" minlength="4" maxlength="4">
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="target">To</span>
         </div>
-    
-        <div class="centered">
-            <button id="search" type="button" class="btn btn-outline-secondary">Search</button>
-        </div>
-    </form>
+        <input id="targetText" type="text" class="form-control" placeholder="TIME" aria-label="To" aria-describedby="target" minlength="4" maxlength="4">
+    </div>
+
+    <button id="search" type="button" class="btn btn-outline-secondary centered">Search</button>
 
     <div class="centered">
         <br/><br/><br/><br/><br/>
