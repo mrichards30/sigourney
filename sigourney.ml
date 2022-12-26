@@ -33,4 +33,22 @@ let bfs (initial: string) (target: string): string list =
         ) () filtered_adjs;
     | None -> ()
   done;
-  List.rev (target :: backtrack parent_map initial target);;
+  target :: backtrack parent_map initial target;;
+
+let () = 
+  let initial_input = Js.Unsafe.global##.document##getElementById "initialText" in
+  let target_input = Js.Unsafe.global##.document##getElementById "targetText" in
+  let search_button = Js.Unsafe.global##.document##getElementById "search" in
+  let answer_list = Js.Unsafe.global##.document##getElementById "answerList" in
+  search_button##.onclick := Dom_html.handler (fun _ -> 
+    let initial = Js.to_string initial_input##.value in
+    let target = Js.to_string target_input##.value in
+    if String.length initial = 4 && String.length target = 4 then
+      let res = bfs target initial in
+      (answer_list##.innerHTML := (res
+        |> List.map (fun word -> "<li>" ^ word ^ "</li>") 
+        |> List.fold_left (fun acc word -> acc ^ word) ""
+        |> Js.string); Js._true)
+    else 
+      Js_of_ocaml.Js.Unsafe.global##alert (Js_of_ocaml.Js.string "Enter 4 characters in both boxes")
+  )
