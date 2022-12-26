@@ -41,8 +41,8 @@ let () =
   let search_button = Js.Unsafe.global##.document##getElementById "search" in
   let answer_list = Js.Unsafe.global##.document##getElementById "answerList" in
   search_button##.onclick := Dom_html.handler (fun _ -> 
-    let initial = Js.to_string initial_input##.value in
-    let target = Js.to_string target_input##.value in
+    let initial = initial_input##.value |> Js.to_string |> String.lowercase_ascii in
+    let target = target_input##.value |> Js.to_string |> String.lowercase_ascii in
     if String.length initial = 4 && String.length target = 4 then
       let res = bfs target initial in
       (answer_list##.innerHTML := (res
