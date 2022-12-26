@@ -1,0 +1,22 @@
+(lang dune 3.4)
+
+(name sigourney)
+
+(generate_opam_files true)
+
+(source
+ (github mrichards30/sigourney-ml))
+
+(authors "Matthew Richards")
+
+(maintainers "Matthew Richards")
+
+(license LICENSE)
+
+(package
+ (name sigourney)
+ (synopsis "Sigourney Weaver")
+ (description "A solver for Weaver")
+ (depends ocaml dune)
+)
+
