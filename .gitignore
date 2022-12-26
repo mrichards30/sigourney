@@ -47,6 +47,8 @@ Temporary Items
 
 # ocamlbuild working directory
 _build/
+src/_build/
+.vscode/
 
 # ocamlbuild targets
 *.byte

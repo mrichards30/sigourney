@@ -1,6 +1,0 @@
-(executable
- (name sigourney)
- (modes js)
- (preprocess (pps js_of_ocaml-ppx lwt_ppx))
- (flags (:standard -warn-error "-unused-value-declaration"))
-)
