@@ -40,7 +40,7 @@ let () =
   let target_input = Js.Unsafe.global##.document##getElementById "targetText" in
   let search_button = Js.Unsafe.global##.document##getElementById "search" in
   let answer_list = Js.Unsafe.global##.document##getElementById "answerList" in
-  search_button##.onclick := Dom_html.handler (fun _ -> 
+  let run_bfs = (fun _ -> 
     let initial = initial_input##.value |> Js.to_string |> String.lowercase_ascii in
     let target = target_input##.value |> Js.to_string |> String.lowercase_ascii in
     if String.length initial = 4 && String.length target = 4 then
@@ -51,4 +51,7 @@ let () =
         |> Js.string); Js._true)
     else 
       Js_of_ocaml.Js.Unsafe.global##alert (Js_of_ocaml.Js.string "Enter 4 characters in both boxes")
-  )
+  ) in
+  search_button##.onclick := Dom_html.handler run_bfs;
+  search_button##.ontouchstart := Dom_html.handler run_bfs
+
