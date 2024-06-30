@@ -5,7 +5,7 @@
 (generate_opam_files true)
 
 (source
- (github mrichards30/sigourney-ml))
+ (github mrichards30/sigourney))
 
 (authors "Matthew Richards")
 
