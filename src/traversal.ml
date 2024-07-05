@@ -5,7 +5,7 @@ end
 module PathFinder (G : Graph) = struct 
   open Queue
 
-  let rec backtrack map initial target =
+  let[@tail_mod_cons] rec backtrack map initial target =
     let parent = Hashtbl.find map target in
     if parent = initial then [initial]
     else parent :: (backtrack map initial parent)
