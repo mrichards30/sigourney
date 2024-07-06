@@ -12,9 +12,9 @@ module PathFinder (G : Graph) = struct
 
   let run_bfs (initial: 'a) (target: 'a): 'a list =
     let queue = Queue.queue_of [initial] in
-    let visited: ('a list) ref = ref [initial] in
-    let parent_map: ('a, 'a) Hashtbl.t = Hashtbl.create 300 in
-    while not (Queue.is_empty queue) do 
+    let visited = ref [initial] in
+    let parent_map = Hashtbl.create 300 in
+    while not @@ Queue.is_empty queue do 
       match Queue.dequeue queue with
         | Some t -> 
           if t = target then 
